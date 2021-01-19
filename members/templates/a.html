@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<style>
+			.outer {
+				margin-top: 10px;
+			}
+			.my_class {
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+				display: inline-block;
+				padding-left: 10px;
+				padding-top: 10px;
+				margin-right: 10px;
+				vertical-align: top;
+			}
+			.my_class > .date {
+				background-color: red;
+				color: white;
+			}
+			.my_class > .content {
+				background-color: blue;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			function hello(){
+				// var addedItem = "<div class='content'>" +  $( "#my_input" ).val() + "</div>" ;
+				// $( "#cal_" + $( "#my_date" ).val() ).append( addedItem);
+				// console.log(typeof(addedItem));
+				var indexOfChild = $( "#my_date" ).val()-1;
+				var addedItem = "<div class='content'>" +  $( "#my_input" ).val() + "</div>";
+				$($(".outer").children()[indexOfChild]).append(addedItem);
+				console.log(typeof($($(".outer").children()[indexOfChild])));
+				console.log(typeof($(".outer").children()[indexOfChild] ));
+			}
+			function checkthisout(obj) {
+				console.log(obj);
+			}
+			function checkparent(obj){
+				console.log( $(obj).parent() );
+			}
+		</script>
+
+		<input type="text" id="my_date" placeholder="날짜">
+		<input type="text" id="my_input" placeholder="할 일">
+		
+		<button onclick="hello();">할일 추가</button>
+		<span onclick="checkthisout(this);">this확인</span>
+		<a onclick="checkthisout(this);">this확인</a>
+
+		<div class="outer">
+			<div id="cal_1" class="my_class">
+				<div class="date" onclick="checkparent(this)">1일</div>
+			</div>
+
+			<div id="cal_2" class="my_class">
+				<div class="date">2일</div>
+			</div>
+
+			<div id="cal_3" class="my_class">
+				<div class="date">3일</div>
+			</div>
+		</div>
+	</body>
+</html>

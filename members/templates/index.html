@@ -1,0 +1,26 @@
+<h1> I am templates in members app </h1>
+<h1>회원등록</h1>
+<img src="http://49.50.173.73:8000/static/birdimage.jpg">
+{{res}}
+<form method="POST" action="/signup">
+	{% comment %}
+		http://49.50.173.73:8000/
+		path('signup', views.signup) 
+	{% endcomment %}
+	{% csrf_token %}
+	username: <input type="text" name="username"/>
+	email: <input type="email" name="email"/>
+	<input type="submit"/>
+</form>
+
+
+
+{% comment %}
+<form method="POST" action=".">
+	<!--http://49.50.173.73:8000/ -->
+	{#	path('',views.index) #}
+	{% csrf_token %}
+	<input type="text" name="username"/>
+	<input type="submit"/>
+</form>
+{%endcomment%}
