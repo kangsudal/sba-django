@@ -1,10 +1,10 @@
 <h1>
     로그인
 </h1>
-
+{{err}}
 <form method="post" action="/login">
     {% csrf_token %}
-    id: <input type="text" name="id"/> 
-    email: <input type="email" name="email"/>
+    id: <input type="text" name="username"/> 
+    email: <input type="email" name="useremail"/>
     <input type="submit">
 </form>
