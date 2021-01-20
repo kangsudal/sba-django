@@ -8,5 +8,6 @@ urlpatterns=[
         path('onetk', views.onetk),
         path('stock', views.stock),
         path('gugu',views.gu),
+        path('login',views.login)
 ]
 

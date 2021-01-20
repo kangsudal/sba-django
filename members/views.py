@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 from .models import Members
 
@@ -44,7 +44,12 @@ def num_gugu(num):
         ans+=f'{num} x {i} = {num*i} <br>' 
     return ans
 
-
+def login(req):
+    print(dir(req))
+    if req.method == 'GET':
+        return render(req,'login.html')
+    elif req.method == 'POST':
+        return redirect('/')
 
 
 '''
