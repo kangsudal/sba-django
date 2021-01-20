@@ -40,12 +40,12 @@
 
 <body>
 	<script>
-		var myModal = document.getElementById('myModal')
-		var myInput = document.getElementById('myInput')
+		// var myModal = document.getElementById('myModal')
+		// var myInput = document.getElementById('myInput')
 
 		function hello() {
 			var indexOfChild = $("#my_date").val() - 1;
-			var addedItem = "<div class='content' onclick='fn(this)'>" + $("#my_input").val() + "</div>";
+			var addedItem = "<div class='content' onclick='openModal(this)'>" + $("#my_input").val() + "</div>";
 			var selectedContainer = $($(".outer").children()[indexOfChild]);
 			selectedContainer.append(addedItem);
 		}
@@ -55,17 +55,32 @@
 		function checkparent(obj) {
 			console.log($(obj).parent());
 		}
-		function fn(obj) {
-			alert(obj + "clicked");
+		function openModal(obj){
+			var itemText=$(obj).text();
+			console.log(itemText);
+
+			// 양배추갖고오기
+			$("#ingredient-name").val(itemText);
+			$("#exampleModal").modal("show");
+		}
+		function removeItem(obj){
+			// alert(obj + "clicked");
 			// $(obj).remove();
-			$(obj).text("hey");
+			// $(obj).text("hey");
+
+		}
+		function saveChange(obj){
+			// alert(obj + "clicked");
+			// $(obj).remove();
+			// $(obj).text("hey");
+
 		}
 	</script>
 	<h1>우리집 냉장고 관리</h1>
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-		Launch demo modal
-	</button>
+
+
+	<a href="#" onclick="openModal(this)">Launch Modal</a>
 
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,11 +91,21 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					...
-				</div>
+					<form>
+					  <div class="mb-3">
+						<label for="ingredient-name" class="col-form-label">ingredient:</label>
+						<input type="text" class="form-control" id="ingredient-name">
+					  </div>
+					  <!-- <div class="mb-3">
+						<label for="store-period" class="col-form-label">store:</label>
+						<input type="text" class="form-control" id="store-period">
+					  </div> -->
+					</form>
+				  </div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary" onclick="removeItem()">Remove</button>
+					<button type="button" class="btn btn-primary" onclick="saveChange()">Save change</button>
 				</div>
 			</div>
 		</div>
