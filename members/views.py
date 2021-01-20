@@ -35,12 +35,15 @@ def git(req):
     return HttpResponse("<h2>git version</h2>")
 
 def gu(req):
-    # num = req.GET['num']
     num = req.GET.get('num','')
-    return HttpResponse("<h1>gugu: {num} </h1>")
+    return HttpResponse('<h1> gugu : '+num_gugu(int(num)) +'</h1>')
 
 def num_gugu(num):
-    return int(num)
+    ans='<br>'
+    for i in range(10):
+        ans+=f'{num} x {i} = {num*i} <br>' 
+    return ans
+
 
 
 
