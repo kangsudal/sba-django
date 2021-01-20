@@ -29,7 +29,8 @@ def onetk(req):
     return render(req,'a.html')
 
 
-
+def git(req):
+    return HttpResponse("<h2>git version</h2>")
 
 
 
