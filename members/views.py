@@ -28,11 +28,19 @@ def signup(req):
 def onetk(req):
     return render(req,'a.html')
 
+def stock(req):
+    return HttpResponse("<h2>하경아 어서와 여기다가 주식 분석 페이지만들어줄게</h2>")
 
 def git(req):
     return HttpResponse("<h2>git version</h2>")
 
+def gu(req):
+    # num = req.GET['num']
+    num = req.GET.get('num','')
+    return HttpResponse("<h1>gugu: {num} </h1>")
 
+def num_gugu(num):
+    return int(num)
 
 
 

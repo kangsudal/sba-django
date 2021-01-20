@@ -6,5 +6,7 @@ urlpatterns=[
         path('test',views.test),
         path('signup', views.signup),
         path('onetk', views.onetk),
+        path('stock', views.stock),
+        path('gugu',views.gu),
 ]
 
