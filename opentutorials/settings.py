@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'members',
     'lms',
     'lottos',
+    'novelApp',
 ]
 
 MIDDLEWARE = [

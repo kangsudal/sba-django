@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('members.urls')),
     path('lms/', include('lms.urls')),
     path('lottos/',include('lottos.urls')),
+    path('novel/',include('novelApp.urls')),
 ]

@@ -6,6 +6,7 @@ urlpatterns=[
         path('test',views.test),
         path('signup', views.signup), #login.html
         path('onetk', views.onetk),   #a.html
+        path('practice_jinja',views.practice_jinja),
         path('stock', views.stock),
         path('gugu',views.gu),
         path('login',views.login),    #login.html

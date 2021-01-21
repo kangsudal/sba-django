@@ -28,6 +28,10 @@ def signup(req):
 def onetk(req):
     return render(req,'a.html')
 
+def practice_jinja(req):
+    context = {"index_1": "코딩온", "loop_1":range( 10 ), "loop_2":range(5,10) ,"loop_3":range(1,31),}
+    return render(req,'practice_jinja.html',context)
+
 def stock(req):
     return HttpResponse("<h2>하경아 어서와 여기다가 주식 분석 페이지만들어줄게</h2>")
 
