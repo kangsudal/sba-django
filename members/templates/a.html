@@ -1,137 +1,106 @@
 <html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
-<head>
-	<!--jquery-->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<!--bootstrap-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-		crossorigin="anonymous"></script>
-	<!--end_bootstrap-->
-	<style>
-		.outer {
-			margin-top: 10px;
-		}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-		.my_class {
-			width: 200px;
-			height: 200px;
-			background-color: yellow;
-			display: inline-block;
-			padding-left: 10px;
-			padding-top: 10px;
-			margin-right: 10px;
-			vertical-align: top;
-		}
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
-		.my_class>.date {
-			background-color: red;
-			color: white;
-		}
+		<style>
+			.outer {
+				margin-top: 10px;
+			}
 
-		.my_class>.content {
-			background-color: blue;
-			color: white;
-		}
-	</style>
-</head>
+			.outer > div  {
+				width: 200px;
+				height: 200px;
+				display: inline-block;
+				vertical-align: top;
+			}
+		</style>
+	</head>
 
-<body>
-	<script>
-		// var myModal = document.getElementById('myModal')
-		// var myInput = document.getElementById('myInput')
-
-		function hello() {
-			var indexOfChild = $("#my_date").val() - 1;
-			var addedItem = "<div class='content' onclick='openModal(this)'>" + $("#my_input").val() + "</div>";
-			var selectedContainer = $($(".outer").children()[indexOfChild]);
-			selectedContainer.append(addedItem);
-		}
-		function checkthisout(obj) {
-			console.log(obj);
-		}
-		function checkparent(obj) {
-			console.log($(obj).parent());
-		}
-		function openModal(obj){
-			var itemText=$(obj).text();
-			console.log(itemText);
-
-			// 양배추갖고오기
-			$("#ingredient-name").val(itemText);
-			$("#exampleModal").modal("show");
-		}
-		function removeItem(obj){
-			// alert(obj + "clicked");
-			// $(obj).remove();
-			// $(obj).text("hey");
-
-		}
-		function saveChange(obj){
-			// alert(obj + "clicked");
-			// $(obj).remove();
-			// $(obj).text("hey");
-
-		}
-	</script>
-	<h1>우리집 냉장고 관리</h1>
-	<!-- Button trigger modal -->
-
-
-	<a href="#" onclick="openModal(this)">Launch Modal</a>
-
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<body class="p-3">
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+
+			  <div class="modal-body">
+				<input type="text" class="form-control">
+			  </div>
+
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary" onclick="edit_go();">변경</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+
+		<script>
+			var obj_sample;
+			
+			function hello(){
+				//.parent()   -> 선택자의 부모태그를 반환한다.
+				//.children() -> 선택자의 자식태그들을 배열로 반환한다.
+
+				$( $( ".outer" ).children()[$( "#my_date" ).val()-1] ).append( "<p class='card-text' onclick='edit( this );'>" +  $( "#my_input" ).val() + "</p>" );
+			}
+			
+			function edit( obj ){
+				obj_sample = obj;
+
+				$( "#exampleModal .modal-title" ).html( $( $( $( obj ).parent() ).children()[0] ).html() );
+				
+				$( "#exampleModal input" ).val( $( obj ).html() );
+
+				$( "#exampleModal" ).modal( "show" );
+			}
+			
+			function edit_go(){
+				$( obj_sample ).html( $( "#exampleModal input" ).val() );
+
+				$( "#exampleModal" ).modal( "hide" );
+			}
+		</script>
+
+		<form class="form-inline">
+			<input type="text" id="my_date" class="form-control mr-2" placeholder="날짜">
+
+			<input type="text" id="my_input" class="form-control mr-2" placeholder="할일">
+			
+			<!-- button type : submit(생략시는 submit) > 폼을 전송한다, button > onclick에 지정되어 있는 함수만 실행. 폼전송은 안한다. -->
+			
+			<button type="button" class="btn btn-success" onclick="hello();">할일 추가</button>
+		</form>
+
+		<div class="outer">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">1일</h5>
+					<p class='card-text' onclick='edit( this );'>밥먹기</p>
 				</div>
-				<div class="modal-body">
-					<form>
-					  <div class="mb-3">
-						<label for="ingredient-name" class="col-form-label">ingredient:</label>
-						<input type="text" class="form-control" id="ingredient-name">
-					  </div>
-					  <!-- <div class="mb-3">
-						<label for="store-period" class="col-form-label">store:</label>
-						<input type="text" class="form-control" id="store-period">
-					  </div> -->
-					</form>
-				  </div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" onclick="removeItem()">Remove</button>
-					<button type="button" class="btn btn-primary" onclick="saveChange()">Save change</button>
+			</div>
+			
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">2일</h5>
+				</div>
+			</div>
+			
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">3일</h5>
 				</div>
 			</div>
 		</div>
-	</div>
-	<br>
-	<!--my contents-->
-	<input type="text" id="my_date" placeholder="최대 보관날짜">
-	<input type="text" id="my_input" placeholder="식자재명">
-
-	<button onclick="hello();">재고 추가</button>
-	<!-- <span onclick="checkthisout(this);">this확인</span>
-		<a onclick="checkthisout(this);">this확인</a> -->
-
-	<div class="outer">
-		<div id="cal_1" class="my_class">
-			<div class="date" onclick="checkparent(this)">1일</div>
-		</div>
-
-		<div id="cal_2" class="my_class">
-			<div class="date">2일</div>
-		</div>
-
-		<div id="cal_3" class="my_class">
-			<div class="date">3일</div>
-		</div>
-	</div>
-</body>
-
+	</body>
 </html>

@@ -57,6 +57,13 @@ def login(req):
         if not (useremail and username) :
             err['err'] = '유효성이 잘못되었습니다.'
             return render(req, 'login.html', err)
+        else:
+            member = Members.objects.get(username=username)
+            if useremail == member.useremail:#세션
+                req.session['user'] = member.id
+                return redirect('/members')
+
+            return HttpResponse(f"<h1>{member.useremail}</h1>")
 
         # username = req.POST.get('username', None)
         # email = req.POST.get('password', None)
@@ -70,6 +77,22 @@ def login(req):
             ## session 만들기
 
         return redirect('/')
+
+def login_after(req):
+    user_id = req.session.get('user')
+    if user_id:
+        return HttpResponse(f'로그인 유저{user_id}')
+    return redirect('/login')
+    # return HttpResponse("세션읽기 & 세션 없으면 리다이렉트")
+
+def logout(req):
+    if req.session.get('user'):
+        del(req.session['user'])
+        return redirect('/')
+        
+
+
+
 
 
 '''

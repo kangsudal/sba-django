@@ -4,10 +4,11 @@ urlpatterns=[
         path('',views.index),
         path('git',views.git),
         path('test',views.test),
-        path('signup', views.signup),
-        path('onetk', views.onetk),
+        path('signup', views.signup), #login.html
+        path('onetk', views.onetk),   #a.html
         path('stock', views.stock),
         path('gugu',views.gu),
-        path('login',views.login)
+        path('login',views.login),    #login.html
+        path('member',views.login_after),
 ]
 
